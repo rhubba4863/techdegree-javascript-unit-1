@@ -11,8 +11,28 @@
   <body>
     <header>
       <h1>Random Quotes</h1>
-      <button id="load-quote" class="load-quote">Show another quote</button>
+      <button id="load-quote" class="load-quote" onclick="resetQuoteInterval()">Show another quote</button>
     </header>
+
+    <!-- https://www.educative.io/answers/how-to-set-a-timer-in-javascript -->
+    <!-- https://stackoverflow.com/questions/30969953/how-can-i-automatically-click-a-button-when-a-timer-counts-down-to-0-how-d -->
+    
+    <!-- https://www.geeksforgeeks.org/how-to-simulate-a-click-with-javascript/ -->
+    <!-- https://www.w3schools.com/jsref/met_win_setinterval.asp -->
+    <script type="text/javascript">
+      // Simulate clicking function
+      function clickShowAnotherQuoteButton() {
+          document.getElementById("load-quote").click();
+      }
+
+      function resetQuoteInterval(){
+        clearInterval(clickShowAnotherQuoteButton);
+        setInterval(clickShowAnotherQuoteButton, 10000);
+      }
+        
+      // Simulate a click every X second's
+      setInterval(clickShowAnotherQuoteButton, 10000);
+    </script>
 
     <div class="container">
       <div id="quote-box" class="quote-box">
