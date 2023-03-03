@@ -56,7 +56,6 @@ const quotes = [
 ];
 
 //var newColor = document.body.style.backgroundColor = rgb(58, 193, 98);
-let timer;
 
 //lastQuote - is used to remember what quote was last presented to the use
 var lastQuote = 0;
@@ -78,16 +77,18 @@ function getRandomQuote(){
   return quotes[randomNumber];
 }
 
-function clickShowAnotherQuoteButton() {
-  document.getElementById("load-quote").click();
-}
+// function clickShowAnotherQuoteButton() {
+//   document.getElementById("load-quote").click();
+// }
+
+let timer;
 
 /***
  * `printQuote` - This function sets up the HTML of the quote, including the year and citation if any are known to exist for that quote
 ***/
 function printQuote(){
-  clearInterval(clickShowAnotherQuoteButton);
-  setInterval(clickShowAnotherQuoteButton, 10000);
+  clearInterval(timer);
+  timer = setInterval(printQuote(), 5000);
 
   const randomQuote = getRandomQuote();
   let htmlString = 
