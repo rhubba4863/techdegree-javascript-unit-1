@@ -103,11 +103,10 @@ function printQuote(){
   
   htmlString += `</p>`;
 
-  document.getElementById('quote-box').innerHTML = htmlString; 
-
-  printQuote();
+  document.getElementById('quote-box').innerHTML = htmlString;   
 }
 
+printQuote();
 
 /***
  * This step finally clicks the print quote button click for the user to view a new quote
