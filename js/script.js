@@ -4,8 +4,8 @@ project 1 - A Random Quote Generator
 ******************************************/
 
 // For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
+// Check the "Project Resources" section of the project instructions
+// Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
 /*** 
  * `Quotes - Here we save famous quotes, along with known features about them
@@ -44,7 +44,7 @@ const quotes = [
     source: "Winston Churchill",
     citation: "Mansion House",
     year: "1942",
-    theme: "wisdom"
+    theme: "Wisdom"
   },
   {
     quote: "Do, or do not… there is no try.",
@@ -55,8 +55,6 @@ const quotes = [
   } 
 ];
 
-//var newColor = document.body.style.backgroundColor = rgb(58, 193, 98);
-
 //lastQuote - is used to remember what quote was last presented to the use
 var lastQuote = 0;
 
@@ -64,7 +62,6 @@ var lastQuote = 0;
  * `getRandomQuote` - This function randomly decides what quote to present to the user, also checking double-checking so no quote is presented 2 times in a row.
 ***/
 function getRandomQuote(){
-  document.body.style.backgroundColor = `rgb(99, 58, 193)`; //99, 58, 193
   var randomNumber = 0;
   
   do {
@@ -77,18 +74,29 @@ function getRandomQuote(){
   return quotes[randomNumber];
 }
 
-// function clickShowAnotherQuoteButton() {
-//   document.getElementById("load-quote").click();
-// }
+function getRandomNumber(max) {
+  return Math.floor( Math.random() * max ) + 1;
+}
 
+function generateNewBackgroundColor(){
+  const a = getRandomNumber(255);
+  const b = getRandomNumber(255);
+  const c = getRandomNumber(255);
+  
+  document.body.style.backgroundColor = `rgb(`+ a + `, ` + b + `, ` + c + `)`;
+}
+
+//Timer - used to reset the quote wait time if the "Load Quote" button is clicked
 let timer;
 
 /***
- * `printQuote` - This function sets up the HTML of the quote, including the year and citation if any are known to exist for that quote
+ * `printQuote` - This function sets up the HTML of the quote, including the year and citation if any are known to exist for that quote. That and chooses a new background color.
 ***/
 function printQuote(){
   clearInterval(timer);
-  timer = setInterval(printQuote(), 5000);
+  timer = setInterval(printQuote, 10000);
+
+  generateNewBackgroundColor();
 
   const randomQuote = getRandomQuote();
   let htmlString = 
@@ -98,8 +106,13 @@ function printQuote(){
   if(randomQuote["citation"] !== null){
     htmlString += `<span class="citation">${randomQuote.citation}</span>`;
   }
+ 
   if(randomQuote["year"] !== null){
     htmlString += `<span class="year">${randomQuote.year}</span>`;
+  }
+  
+  if(randomQuote["theme"] !== null){
+    htmlString += `<span class="year">${randomQuote.theme}</span>`;
   }
   
   htmlString += `</p>`;
